@@ -19,14 +19,9 @@ const App = () => {
   ]
 
   const Header = (props) => {
-    console.log(props)
     return <h1>{props.course}</h1>
   }
-  /*
-  const Part = (props) => {
-    return <p>{props.part} {props.exercises}</p>
-  }
-  */
+
   const Content = (props) => {
     return (
       <div>
@@ -39,7 +34,8 @@ const App = () => {
   
   const Total = (props) => {
     return <p>Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
-  }
+ 
+  } 
  
   return (
     <div>
@@ -49,6 +45,5 @@ const App = () => {
     </div>
   )
 }
-
 
 ReactDOM.render(<App />, document.getElementById('root'))
