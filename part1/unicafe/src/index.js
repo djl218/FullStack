@@ -14,11 +14,12 @@ const Button = (props) => {
   )
 }
 
+//text2 is only needed to show percent sign for last statistic 
 const Statistics = (props) => {
   const { text, allClicks, text2 } = props
   return (
     <div>
-      {text} {allClicks} {text2}               //text2 is only needed to show percent sign for last statistic 
+      {text} {allClicks} {text2}             
     </div>
   )
 }
