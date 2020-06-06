@@ -48,19 +48,32 @@ const App = () => {
     setAverageBad(averageBad - 1)
   }
 
+  if (good + neutral + bad === 0) {
+    return (
+      <div>
+        <Header header='give feedback' />
+        <Button onClick={handleGood} text='good' />
+        <Button onClick={handleNeutral} text='neutral' />
+        <Button onClick={handleBad} text='bad' />
+        <Header header='statistics' />
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+
   return (
     <div>
-      <Header header='give feedback' />
-      <Button onClick={handleGood} text='good' />
-      <Button onClick={handleNeutral} text='neutral' />
-      <Button onClick={handleBad} text='bad' />
-      <Header header='statistics' />
-      <Statistic text='good' allClicks={good} />
-      <Statistic text='neutral' allClicks={neutral} />
-      <Statistic text='bad' allClicks={bad} />
-      <Statistic text='all' allClicks={good + neutral + bad} />
-      <Statistic text='average' allClicks={(averageGood + averageNeutral + averageBad) / (good + neutral + bad)} />
-      <Statistic text='positive' allClicks={good / (good + neutral + bad) * 100} text2={'%'} />
+        <Header header='give feedback' />
+        <Button onClick={handleGood} text='good' />
+        <Button onClick={handleNeutral} text='neutral' />
+        <Button onClick={handleBad} text='bad' />
+        <Header header='statistics' />
+        <Statistic text='good' allClicks={good} />
+        <Statistic text='neutral' allClicks={neutral} />
+        <Statistic text='bad' allClicks={bad} />
+        <Statistic text='all' allClicks={good + neutral + bad} />
+        <Statistic text='average' allClicks={(averageGood + averageNeutral + averageBad) / (good + neutral + bad)} />
+        <Statistic text='positive' allClicks={good / (good + neutral + bad) * 100} text2={'%'} />
     </div>
   )
 }
