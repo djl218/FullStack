@@ -15,7 +15,7 @@ const Button = (props) => {
 }
 
 //text2 is only needed to show percent sign for last statistic 
-const Statistics = (props) => {
+const Statistic = (props) => {
   const { text, allClicks, text2 } = props
   return (
     <div>
@@ -55,12 +55,12 @@ const App = () => {
       <Button onClick={handleNeutral} text='neutral' />
       <Button onClick={handleBad} text='bad' />
       <Header header='statistics' />
-      <Statistics text='good' allClicks={good} />
-      <Statistics text='neutral' allClicks={neutral} />
-      <Statistics text='bad' allClicks={bad} />
-      <Statistics text='all' allClicks={good + neutral + bad} />
-      <Statistics text='average' allClicks={(averageGood + averageNeutral + averageBad) / (good + neutral + bad)} />
-      <Statistics text='positive' allClicks={good / (good + neutral + bad) * 100} text2={'%'} />
+      <Statistic text='good' allClicks={good} />
+      <Statistic text='neutral' allClicks={neutral} />
+      <Statistic text='bad' allClicks={bad} />
+      <Statistic text='all' allClicks={good + neutral + bad} />
+      <Statistic text='average' allClicks={(averageGood + averageNeutral + averageBad) / (good + neutral + bad)} />
+      <Statistic text='positive' allClicks={good / (good + neutral + bad) * 100} text2={'%'} />
     </div>
   )
 }
