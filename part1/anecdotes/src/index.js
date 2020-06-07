@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+const Header = (props) => {
+  const { header } = props
+  return (
+    <h1>{header}</h1>
+  )
+}
+
 const Button = (props) => {
   const { onClick, text } = props
   return (
@@ -12,27 +19,33 @@ const Button = (props) => {
 
 const App = (props) => {
   const voteArray = Array.apply(null, new Array(6)).map(Number.prototype.valueOf,0)
-  
+
   const [voteCount, setVote] = useState(voteArray)
   const [selected, setSelected] = useState(0)
 
   const copyVoteCount = [...voteCount]
     copyVoteCount[selected] += 1
 
+  const mostVotesIndex = voteCount.indexOf(Math.max.apply(null, voteCount))  
+
   const handleVote = () => {
     setVote(copyVoteCount)
   }
  
   const handleNext = () => {
-    setSelected(Math.floor(Math.random() * 5))
+    setSelected(Math.floor(Math.random() * 6))
   }
 
   return (
     <div>
-      <p>{props.anecdotes[selected]}</p>
-      <p>has {voteCount[selected]} votes</p>
+      <Header header='Anecdote of the day' />
+      <div>{props.anecdotes[selected]}</div>
+      <div>has {voteCount[selected]} votes</div>
       <Button onClick={handleVote} text='vote' />
       <Button onClick={handleNext} text='next anecdote' />
+      <Header header='Anecdote with most votes' />
+      <div>{props.anecdotes[mostVotesIndex]}</div>
+      <div>has {voteCount[mostVotesIndex]} votes</div>
     </div>
   )
 }
