@@ -24,16 +24,16 @@ const App = (props) => {
   const [selected, setSelected] = useState(0)
 
   const copyVoteCount = [...voteCount]
-    copyVoteCount[selected] += 1
 
-  const mostVotesIndex = voteCount.indexOf(Math.max.apply(null, voteCount))  
+  const mostVotesIndex = voteCount.indexOf(Math.max(...voteCount))  
 
   const handleVote = () => {
     setVote(copyVoteCount)
+    copyVoteCount[selected] += 1
   }
  
   const handleNext = () => {
-    setSelected(Math.floor(Math.random() * 6))
+    setSelected(Math.floor(Math.random() * props.anecdotes.length))
   }
 
   return (
