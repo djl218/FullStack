@@ -1,11 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Course = (props) => {
+const Total = (props) => {
   const total = props.topic.reduce(
     (accumulator, currentValue) => accumulator + currentValue.exercises,
     0
   )
+  return <b>total of {total} exercises</b>
+}
+
+  const Course = (props) => {
   return (
     <div>
       <h1>Web development curriculum</h1> 
@@ -19,21 +23,12 @@ const Course = (props) => {
               {topic.name} {topic.exercises}
             </p>
           )}
-          <b key={total}>total of {total} exercises</b>    
+          <Total topic={course.parts} />    
         </div>
       )} 
     </div>
   )
 }
-
-/*const Total = props => {
-  const total = props.course.parts.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.exercises,
-    0
-  );
-  return <b>total of {total} exercises</b>
-}*/
-
 
 const App = () => {
   const courses = [
@@ -83,7 +78,7 @@ const App = () => {
 
   return (
     <div>
-      <Course courses={courses} topic={courses.parts} />
+      <Course courses={courses} />
     </div>
   )  
 }
