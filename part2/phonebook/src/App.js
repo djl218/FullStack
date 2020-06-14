@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 //import Person from './components/Person'
+//not using ./components/Person module right now
 
 const Person = (props) => {
   return (
@@ -21,8 +22,7 @@ const App = () => {
   const addPerson = (event) => {
     event.preventDefault()
     const personObject = {
-      content: newName,
-      date: new Date().toISOString(),
+      name: newName,
     }
     setPersons(persons.concat(personObject))
     setNewName('')
@@ -31,8 +31,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
-        <div onSubmit={addPerson}>
+      <form onSubmit={addPerson}>
+        <div>
           name: <input value={newName} onChange={handleNewName} />
         </div>  
         <div>
@@ -41,7 +41,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map(person =>
-        <Person key={persons.name} person={person} />
+        <Person key={person.name} person={person} />
       )}      
     </div>
   )
