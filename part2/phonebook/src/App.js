@@ -3,9 +3,9 @@ import Person from './components/Person'
 
 const App = () => {
   const [ persons, setPersons ] = 
-  useState([
-    { name: 'Arto Hellas', number: '040-123456' }
-  ]) 
+    useState([
+      { name: 'Arto Hellas', number: '040-123456' }
+    ]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
 
