@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Person from './components/Person'
+import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = 
@@ -71,7 +71,7 @@ const App = () => {
       </form>
       <h1>Numbers</h1>
       {searchResults.map(person => (
-        <Person key={person.name} person={person} />
+        <Persons key={person.name} person={person} />
       ))}
     </div>
   )
