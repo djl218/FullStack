@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Filter = ({ newSearch, handleNewSearch }) => {
+const Filter = ({ countrySearch, handleCountrySearch }) => {
     return (
         <div>
-          find countries <input value={newSearch} onChange={handleNewSearch}/>
+          find countries <input value={countrySearch} onChange={handleCountrySearch}/>
         </div>
     )
 }
