@@ -6,7 +6,6 @@ import Countries from './components/Countries'
 const App = () => {
   const [ countries, setCountries ] = useState([])
   const [ newSearch, setNewSearch ] = useState('')
-  const [ searchResults, setSearchResults ] = useState([])
 
   const handleNewSearch = (event) => {
     console.log(event.target.value)
@@ -23,17 +22,13 @@ const App = () => {
       })
   }, [])
 
-  useEffect(() => {
-    const countrySearch = 
-      countries.filter(country => country.name.toLowerCase().includes(newSearch)
-      )   
-    setSearchResults(countrySearch);
-  }, [countries, newSearch]);
-
+  const searchResults = countries.filter(country => 
+    country.name.toLowerCase().includes(newSearch))
+  
   return (
     <div>
       <Filter newSearch={newSearch} handleNewSearch={handleNewSearch} />
-      <Countries searchResults={searchResults} />
+      <Countries searchResults={searchResults} newSearch={newSearch} setNewSearch={setNewSearch} />
     </div>
   );
 }
