@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Filter = (props) => {
-    const { newSearch, handleNewSearch } = props
+const Filter = ({ newSearch, handleNewSearch }) => {
     return (
         <div>
           find countries <input value={newSearch} onChange={handleNewSearch}/>

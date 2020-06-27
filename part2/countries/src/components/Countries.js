@@ -1,8 +1,6 @@
 import React from 'react'
 
-const Countries = (props) => {
-    const { searchResults } = props
-
+const Countries = ({ searchResults }) => {
     const countriesMapped = searchResults.map(country => (
         <div key={country.numericCode}>{country.name}</div>
     ))
