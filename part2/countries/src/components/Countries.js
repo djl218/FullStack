@@ -1,3 +1,5 @@
+// Some contries that are in country API are not in weather API.  Causes crash if that country is searched for.
+// If you render a single country result and then type some random letters, the app wll crash if you try to delete those random letters.
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
@@ -37,7 +39,7 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
             console.log('promise fulfilled')
             setWeather(response.data)
         })
-    }, [countryName[0]])
+    }, [api_key, countryName[0]])   // Still getting warning because countryName with no index is not included in dependency array
 
     if (countriesMapped.length > 10) {
         return (
@@ -54,7 +56,7 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
             )) 
         )
     }
-    if (countrySearch === countrySearchResults.filter(country => country.name) ||
+    if (/*countrySearch === countrySearchResults.filter(country => country.name) ||*/
         countriesMapped.length === 1) {
 
         const capital = weather.location.name
