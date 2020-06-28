@@ -9,9 +9,6 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
     const countriesMapped = countrySearchResults.map(country => (
         <span key={country.numericCode}>{country.name}</span>
     ))
-    const countryCapitalFilter = countrySearchResults.filter(country =>
-        country.capital)
-
     const countryCapitalMap = countrySearchResults.map(country => (
         <span key={country.numericCode}>{country.capital}</span>
       ))
@@ -28,19 +25,19 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
     const countryFlag = countrySearchResults.map(country => (
         <img key={country.numericCode} src={country.flag} alt="Country Flag" width="100" height="100" />
     ))
-    
+
+    const countryName = countrySearchResults.map(country => (
+        country.name
+    ))
     useEffect(() => {
         console.log('effect')
         axios
-          .get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${countryCapitalFilter}`)
+          .get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${countryName[0]}`)
           .then(response => {
             console.log('promise fulfilled')
             setWeather(response.data)
         })
-    }, [])
-
-    //const temperature = weather.current.temperature
-    //console.log(temperature)
+    }, [countryName[0]])
 
     if (countriesMapped.length > 10) {
         return (
@@ -57,8 +54,15 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
             )) 
         )
     }
-    if (countrySearch === countrySearchResults.filter(country => country.name)
-        || countriesMapped.length === 1) {
+    if (countrySearch === countrySearchResults.filter(country => country.name) ||
+        countriesMapped.length === 1) {
+
+        const capital = weather.location.name
+        const temperature = weather.current.temperature
+        const weatherIcon = weather.current.weather_icons
+        const windSpeed = weather.current.wind_speed
+        const windDirection = weather.current.wind_dir
+
         return (
             <div>
                 <h2>{countriesMapped}</h2>
@@ -67,8 +71,10 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
                 <h3>languages</h3>
                 <div>{countryLanguages}</div>
                 <div>{countryFlag}</div>
-                <h3>Weather in {countriesMapped}</h3>
-                <div>temperature: Celcius</div>  
+                <h3>Weather in {capital}</h3>
+                <div><b>temperature:</b> {temperature} Celcius</div>
+                <img src={weatherIcon} alt="Weather Icon" width="50" height="50" />
+                <div><b>wind:</b> {windSpeed} mph direction {windDirection}</div> 
             </div>
         )    
     }

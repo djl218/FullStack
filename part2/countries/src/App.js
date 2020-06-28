@@ -5,7 +5,6 @@ import Countries from './components/Countries'
 
 const App = () => {
   const [ countries, setCountries ] = useState([])
-  //const [ weather, setWeather ] = useState()
   const [ countrySearch, setCountrySearch ] = useState('')
 
   const handleCountrySearch = (event) => {
@@ -26,20 +25,6 @@ const App = () => {
   const countrySearchResults = countries.filter(country => 
     country.name.toLowerCase().includes(countrySearch.toLowerCase()))
 
-  /*const countryCapitalFilter = countrySearchResults.filter(country =>
-    country.capital.includes(countrySearch))
-    console.log(countryCapitalFilter)
-
-  useEffect(() => {
-    console.log('effect')
-    axios
-      .get(`http://api.weatherstack.com/current?access_key=${api_key}&query=${countryCapitalFilter}`)
-      .then(response => {
-        console.log('promise fulfilled')
-        setWeather(response.data)
-      })
-  }, [])*/
-  
   return (
     <div>
       <Filter countrySearch={countrySearch} handleCountrySearch={handleCountrySearch} />
