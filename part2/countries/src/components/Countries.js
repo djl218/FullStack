@@ -59,7 +59,9 @@ const Countries = ({ countrySearchResults, countrySearch, setCountrySearch }) =>
     if (/*countrySearch === countrySearchResults.filter(country => country.name) ||*/
         countriesMapped.length === 1) {
 
-        const capital = weather.location.name
+        const capital = countrySearchResults.map(country => (
+            country.capital
+        ))
         const temperature = weather.current.temperature
         const weatherIcon = weather.current.weather_icons
         const windSpeed = weather.current.wind_speed
