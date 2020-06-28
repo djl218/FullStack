@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Persons = (props) => {
-    const { searchResults } = props
+    const { personSearch } = props
     return (
-        searchResults.map(person => (
+        personSearch.map(person => (
             <div key={person.name}>{person.name} {person.number}</div>
     )))
 }
