@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
@@ -31,7 +31,7 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
-  const addName = (event) => {
+  const addNameNumber = (event) => {
     event.preventDefault();
     if (persons.map(person => person.name).includes(newName)) {
       alert(`${newName} is already added to phonebook`)
@@ -52,18 +52,37 @@ const App = () => {
   }
 
   const personSearch = persons.filter(person => 
-    person.name.toLowerCase().includes(newSearch.toLowerCase()))   
+    person.name.toLowerCase().includes(newSearch.toLowerCase()))
+
+  console.log(persons)
+  console.log(newSearch)
   
+  const deleteNameNumberOf = (id) => {
+    //console.log('person with id of ' + id + ' needs to be deleted')
+    //const person = personSearch.find(n => n.id === id)
+    personService
+      .deletePerson(id)
+      .then((deletedPerson => {
+        setPersons(personSearch.map(person => person.id !== id ? person : deletedPerson))
+      }))
+  }
+   
   return (
     <div>
       <h2>Phonebook</h2>
       <Filter newSearch={newSearch} handleNewSearch={handleNewSearch} />
       <h3>add a new</h3>  
-      <PersonForm addName={addName} newName={newName} handleNewName={handleNewName}
+      <PersonForm addNameNumber={addNameNumber} newName={newName} handleNewName={handleNewName}
         newNumber={newNumber} handleNewNumber={handleNewNumber} 
       />
       <h3>Numbers</h3>
-      <Persons personSearch={personSearch} />
+      {personSearch.map((person) =>
+        <Persons 
+          key={person.id}
+          person={person}
+          deleteNameNumber={() => deleteNameNumberOf(person.id)} 
+        />
+      )}  
     </div>
   )
 }

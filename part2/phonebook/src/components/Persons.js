@@ -1,11 +1,12 @@
 import React from 'react'
 
-const Persons = (props) => {
-    const { personSearch } = props
+const Persons = ({ person, deleteNameNumber }) => {
     return (
-        personSearch.map(person => (
-            <div key={person.name}>{person.name} {person.number}</div>
-    )))
+            <div>
+                {person.name} {person.number}
+                <button onClick={deleteNameNumber}>delete</button>
+            </div>
+    )
 }
 
 export default Persons
