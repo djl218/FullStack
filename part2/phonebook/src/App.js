@@ -29,7 +29,7 @@ const App = () => {
   const handleNewNumber = (event) => {
     setNewNumber(event.target.value)
   }
-  console.log("My delete button works now!")
+ 
   const addNameNumber = (event) => {
     event.preventDefault();
     if (persons.map(person => person.name).includes(newName)) {
