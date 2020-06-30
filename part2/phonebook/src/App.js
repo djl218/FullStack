@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-//import axios from 'axios'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
@@ -30,7 +29,7 @@ const App = () => {
   const handleNewNumber = (event) => {
     setNewNumber(event.target.value)
   }
-
+  console.log("My delete button works now!")
   const addNameNumber = (event) => {
     event.preventDefault();
     if (persons.map(person => person.name).includes(newName)) {
@@ -54,19 +53,20 @@ const App = () => {
   const personSearch = persons.filter(person => 
     person.name.toLowerCase().includes(newSearch.toLowerCase()))
 
-  console.log(persons)
-  console.log(newSearch)
-  
   const deleteNameNumberOf = (id) => {
-    //console.log('person with id of ' + id + ' needs to be deleted')
-    //const person = personSearch.find(n => n.id === id)
-    personService
-      .deletePerson(id)
-      .then((deletedPerson => {
-        setPersons(personSearch.map(person => person.id !== id ? person : deletedPerson))
-      }))
-  }
-   
+    const person = persons.find(n => n.id === id)
+    const confirmationWindow = window.confirm(`Delete ${person.name}?`)
+    if (confirmationWindow === true) {
+      personService
+        .deletePerson(id)
+        .then(() => {
+          setPersons(personSearch.filter(person => person.id !== id))
+        })  
+    } else {
+        return personSearch
+    }
+  }  
+  
   return (
     <div>
       <h2>Phonebook</h2>
