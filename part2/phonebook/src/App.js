@@ -34,16 +34,14 @@ const App = () => {
     person.name.toLowerCase().includes(newSearch.toLowerCase()))
  
   const addNameNumber = (name) => {
-    const person = persons.find(n => n.name === name)
-    const changedNumber = { ...person }
+    const originalPerson = persons.find(n => n.name === newName)
 
     if (persons.map(person => person.name).includes(newName)) {
       const confirmWindowForDuplicate = 
-        window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
-      
+        window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)  
       if (confirmWindowForDuplicate === true) {
         personService
-          .update(name, changedNumber)
+          .update(originalPerson.id, {...originalPerson, number : newNumber})
           .then((returnedPerson) => {
             setPersons(personSearch.map(person => person.name !== name ? person : returnedPerson))
             setNewName('')
@@ -55,18 +53,18 @@ const App = () => {
         setNewNumber('')
       }
     } else {
-    const personObject = {
-      name: newName,
-      number: newNumber,
-      id: persons.length + 1,
-    }
-    personService
-      .create(personObject)
-      .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson))
-        setNewName('')
-        setNewNumber('')
-      })
+      const personObject = {
+        name: newName,
+        number: newNumber,
+        id: persons.length + 1
+      }
+      personService
+        .create(personObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        })
     }
   }
 
