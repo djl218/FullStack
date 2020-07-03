@@ -72,9 +72,9 @@ const App = () => {
 
   const deleteNameNumberOf = (id) => {
     const person = persons.find(n => n.id === id)
-    const confirmWindowForDel = window.confirm(`Delete ${person.name}?`)
+    const confirmWindowForDelete = window.confirm(`Delete ${person.name}?`)
     
-    if (confirmWindowForDel === true) {
+    if (confirmWindowForDelete === true) {
       personService
         .deletePerson(id)
         .then(() => {
