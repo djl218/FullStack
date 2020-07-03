@@ -3,7 +3,8 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/persons'
-import Notification from './components/Notification'
+import SuccessfulNotification from './components/SuccessfulNotification'
+import UnsuccessfulNotification from './components/UnsuccessfulNotification'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
@@ -11,6 +12,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newSearch, setNewSearch ] = useState('')
   const [ personAddedMessage, setPersonAddedMessage ] = useState(null)
+  const [ alreadyRemovedMessage, setAlreadyRemovedMessage ] = useState(null)
 
   useEffect(() => {
     personService
@@ -49,7 +51,17 @@ const App = () => {
             setPersons(personSearch.map(person => person.name !== newName ? person : returnedPerson))
             setNewName('')
             setNewNumber('')
-          })  
+          })
+          .catch(error => {
+            setAlreadyRemovedMessage(
+              `Information of ${newName} has already been removed from server`
+            )
+            setNewName('')
+            setNewNumber('')
+            setTimeout(() => {
+              setAlreadyRemovedMessage(null)
+            }, 5000)
+          })    
       } else {
         setPersons(personSearch)
         setNewName('')
@@ -84,7 +96,7 @@ const App = () => {
         .deletePerson(id)
         .then(() => {
           setPersons(personSearch.filter(person => person.id !== id))
-        })  
+        }) 
     } else {
       return personSearch
     }
@@ -93,7 +105,8 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <Notification message={personAddedMessage} />
+      <SuccessfulNotification message={personAddedMessage} />
+      <UnsuccessfulNotification message={alreadyRemovedMessage} />
       <Filter newSearch={newSearch} handleNewSearch={handleNewSearch} />
       <h2>add a new</h2>  
       <PersonForm addNameNumber={addNameNumber} newName={newName} handleNewName={handleNewName}
