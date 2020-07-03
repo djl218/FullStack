@@ -19,6 +19,26 @@
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
       "id": 4
+    },
+    {
+      "name": "sophie",
+      "number": "610",
+      "id": 5
+    },
+    {
+      "name": "dog",
+      "number": "77",
+      "id": 6
+    },
+    {
+      "name": "cat",
+      "number": "21",
+      "id": 7
+    },
+    {
+      "name": "pig",
+      "number": "54",
+      "id": 8
     }
   ]
 }

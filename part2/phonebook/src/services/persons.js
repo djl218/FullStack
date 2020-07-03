@@ -6,13 +6,13 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-const create = newPerson => {
-    const request = axios.post(baseURL, newPerson)
+const create = newObject => {
+    const request = axios.post(baseURL, newObject)
     return request.then(response => response.data)
 }
 
-const update = (id, newPerson) => {
-    const request = axios.put(`${baseURL}/${id}`, newPerson)
+const update = (id, newObject) => {
+    const request = axios.put(`${baseURL}/${id}`, newObject)
     return request.then(response => response.data)
 }
 

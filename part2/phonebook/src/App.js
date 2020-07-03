@@ -29,11 +29,31 @@ const App = () => {
   const handleNewNumber = (event) => {
     setNewNumber(event.target.value)
   }
+
+  const personSearch = persons.filter(person => 
+    person.name.toLowerCase().includes(newSearch.toLowerCase()))
  
-  const addNameNumber = (event) => {
-    event.preventDefault();
+  const addNameNumber = (name) => {
+    const person = persons.find(n => n.name === name)
+    const changedNumber = { ...person }
+
     if (persons.map(person => person.name).includes(newName)) {
-      alert(`${newName} is already added to phonebook`)
+      const confirmWindowForDuplicate = 
+        window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
+      
+      if (confirmWindowForDuplicate === true) {
+        personService
+          .update(name, changedNumber)
+          .then((returnedPerson) => {
+            setPersons(personSearch.map(person => person.name !== name ? person : returnedPerson))
+            setNewName('')
+            setNewNumber('')
+          })  
+      } else {
+        setPersons(personSearch)
+        setNewName('')
+        setNewNumber('')
+      }
     } else {
     const personObject = {
       name: newName,
@@ -50,23 +70,21 @@ const App = () => {
     }
   }
 
-  const personSearch = persons.filter(person => 
-    person.name.toLowerCase().includes(newSearch.toLowerCase()))
-
   const deleteNameNumberOf = (id) => {
     const person = persons.find(n => n.id === id)
-    const confirmationWindow = window.confirm(`Delete ${person.name}?`)
-    if (confirmationWindow === true) {
+    const confirmWindowForDel = window.confirm(`Delete ${person.name}?`)
+    
+    if (confirmWindowForDel === true) {
       personService
         .deletePerson(id)
         .then(() => {
           setPersons(personSearch.filter(person => person.id !== id))
         })  
     } else {
-        return personSearch
+      return personSearch
     }
   }  
-  
+    
   return (
     <div>
       <h2>Phonebook</h2>
