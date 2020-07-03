@@ -12,7 +12,7 @@ const PersonForm = ({ addNameNumber, newName, handleNewName, newNumber, handleNe
         <div>
           <button type="submit">add</button>
         </div>
-      </form>
+        </form>
     )
 }
 
