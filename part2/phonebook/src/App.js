@@ -11,8 +11,8 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newSearch, setNewSearch ] = useState('')
-  const [ personAddedMessage, setPersonAddedMessage ] = useState(null)
-  const [ alreadyRemovedMessage, setAlreadyRemovedMessage ] = useState(null)
+  const [ greenMessage, setGreenMessage ] = useState(null)
+  const [ redMessage, setRedMessage ] = useState(null)
 
   useEffect(() => {
     personService
@@ -53,13 +53,13 @@ const App = () => {
             setNewNumber('')
           })
           .catch(error => {
-            setAlreadyRemovedMessage(
+            setRedMessage(
               `Information of ${newName} has already been removed from server`
             )
             setNewName('')
             setNewNumber('')
             setTimeout(() => {
-              setAlreadyRemovedMessage(null)
+              setRedMessage(null)
             }, 5000)
           })    
       } else {
@@ -77,12 +77,22 @@ const App = () => {
         .create(personObject)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
-          setPersonAddedMessage(`Added ${newName}`)
+          setGreenMessage(`Added ${newName}`)
           setNewName('')
           setNewNumber('')
           setTimeout(() => {
-            setPersonAddedMessage(null)
+            setGreenMessage(null)
           }, 5000)
+        })
+        .catch(error => {
+          setRedMessage(
+            `${JSON.stringify(error.response.data.error).replace(/"/g, '')}`
+          )
+          setNewName('')
+          setNewNumber('')
+          setTimeout(() => {
+            setRedMessage(null)
+          }, 5000)  
         })
     }  
   }
@@ -105,8 +115,8 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <SuccessfulNotification message={personAddedMessage} />
-      <UnsuccessfulNotification message={alreadyRemovedMessage} />
+      <SuccessfulNotification message={greenMessage} />
+      <UnsuccessfulNotification message={redMessage} />
       <Filter newSearch={newSearch} handleNewSearch={handleNewSearch} />
       <h2>add a new</h2>  
       <PersonForm addNameNumber={addNameNumber} newName={newName} handleNewName={handleNewName}
