@@ -36,5 +36,5 @@
   "devDependencies": {
     "json-server": "^0.16.1"
   },
-  "proxy": "https://alluring-kings-canyon-01879.herokuapp.com/" 
+  "proxy": "http://localhost:3001" 
 }
