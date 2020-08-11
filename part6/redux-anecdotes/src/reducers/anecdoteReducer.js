@@ -22,7 +22,7 @@ const initialState = anecdotesAtStart.map(asObject)
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case 'VOTE':
-      const id = action.id.id
+      const id = action.id
       const anecdoteToVote = state.find(n => n.id === id)
       const votedAnecdote = {
         ...anecdoteToVote,
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
 export const voteAnecdote = (id) => {
   return {
     type: 'VOTE',
-    id: { id }
+    id
   }
 }
 
