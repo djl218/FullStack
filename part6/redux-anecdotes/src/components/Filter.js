@@ -8,7 +8,6 @@ const Filter = () => {
     const handleChange = (event) => {
         event.preventDefault()
         const anecdoteFilter = event.target.value
-        console.log(anecdoteFilter)
         dispatch(filterAnecdotes(anecdoteFilter))
     }
     const style = {
