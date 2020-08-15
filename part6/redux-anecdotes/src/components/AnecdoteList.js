@@ -15,8 +15,8 @@ const AnecdoteList = () => {
         )    
     })
 
-    const vote = (id) => {
-        dispatch(voteAnecdote(id))
+    const vote = (content, votes, id) => {
+        dispatch(voteAnecdote(content, votes, id))
     }
     const notifiyThenHide = (content) => {
         dispatch(showNotification(`you voted '${content}'`))
@@ -38,7 +38,7 @@ const AnecdoteList = () => {
                         has {anecdote.votes}
                         <button 
                             onClick={() => {
-                                vote(anecdote.id)
+                                vote(anecdote.content, anecdote.votes, anecdote.id)
                                 notifiyThenHide(anecdote.content)
                             }}
                         >
