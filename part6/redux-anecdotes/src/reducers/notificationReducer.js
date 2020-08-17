@@ -1,3 +1,5 @@
+var timerHelper
+
 const notificationReducer = (state = null, action) => {
     switch(action.type) {
         case 'SHOW_NOTIFICATION':
@@ -14,8 +16,11 @@ export const setNotification = (anecdote, timer) => {
         dispatch({
             type: 'SHOW_NOTIFICATION',
             data: { anecdote }
-        }) 
-        setTimeout(() => {
+        })
+
+        clearTimeout(timerHelper)
+
+        timerHelper = setTimeout(() => {
             dispatch({
                 type: 'HIDE_NOTIFICATION',
                 data: null
