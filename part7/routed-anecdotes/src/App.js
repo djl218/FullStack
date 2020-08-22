@@ -4,11 +4,11 @@ import {
   Switch,
   Route,
   Link,
-  useRouteMatch
+  useRouteMatch,
+  useHistory
 } from "react-router-dom"
 
 const Anecdote = ({ anecdote }) => {
-  console.log(anecdote)
   return (
     <div>
       <h2>{anecdote.content}</h2>
@@ -58,6 +58,7 @@ const CreateNew = (props) => {
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
 
+  const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -67,6 +68,7 @@ const CreateNew = (props) => {
       info,
       votes: 0
     })
+    history.push('/')
   }
 
   return (
@@ -110,11 +112,17 @@ const App = () => {
     }
   ])
 
-  //const [notification, setNotification] = useState('')
+  const [notification, setNotification] = useState('')
 
   const addNew = (anecdote) => {
     anecdote.id = (Math.random() * 10000).toFixed(0)
     setAnecdotes(anecdotes.concat(anecdote))
+    setNotification(
+      `a new anecdote ${anecdote.content} created!`
+    )
+    setTimeout(() => {
+      setNotification(null)
+    }, 10000)
   }
 
   /*const anecdoteById = (id) =>
@@ -136,12 +144,9 @@ const App = () => {
   }
 
   const match = useRouteMatch('/anecdotes/:id')
-  console.log(match)
-  console.log(anecdotes)
   const anecdote = match
     ? anecdotes.find(anecdote => anecdote.id === match.params.id)
     : null
-console.log(anecdote)
   
 return (
     <div>
@@ -150,6 +155,10 @@ return (
         <Link style={padding} to="/">anecdotes</Link>
         <Link style={padding} to="/create">create new</Link>
         <Link style={padding} to="/about">about</Link>
+        {notification
+          ? <div>{notification}</div>
+          : null
+}
       </div>
 
       <Switch>
