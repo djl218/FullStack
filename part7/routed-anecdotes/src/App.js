@@ -74,23 +74,34 @@ const CreateNew = (props) => {
     history.push('/')
   }
 
+  const resetForm = () => {
+    content.reset()
+    author.reset()
+    info.reset()
+  }
+
+  const {reset: contentReset, ...contentNoReset} = content
+  const {reset: authorReset, ...authorNoReset} = author
+  const {reset: infoReset, ...infoNoReset} = info
+
   return (
     <div>
       <h2>create a new anecdote</h2>
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input {...content} />
+          <input {...contentNoReset} />
         </div>
         <div>
           author
-          <input {...author} />
+          <input {...authorNoReset} />
         </div>
         <div>
           url for more info
-          <input {...info} />
+          <input {...infoNoReset} />
         </div>
-        <button>create</button>
+        <button type="submit">create</button>
+        <button onClick={resetForm} type="reset">reset</button>
       </form>
     </div>
   )
