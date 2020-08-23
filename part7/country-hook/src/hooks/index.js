@@ -13,9 +13,9 @@ export const useField = (type) => {
       value,
       onChange
     }
-  }
+}
   
-  export const useCountry = (name) => {
+export const useCountry = (name) => {
     const [country, setCountry] = useState(null)
   
     useEffect(() => {
@@ -34,4 +34,4 @@ export const useField = (type) => {
     }, [name])
   
     return country
-  }
+}
