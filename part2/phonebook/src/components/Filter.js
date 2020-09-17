@@ -6,6 +6,7 @@ import {
 const Filter = ({ newSearch, handleNewSearch }) => {
     return (
         <div>
+          <br></br>
           find contact: <TextField value={newSearch} onChange={handleNewSearch}/>
         </div>
     )
