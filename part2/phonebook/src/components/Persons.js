@@ -1,10 +1,18 @@
 import React from 'react'
+import {
+    Button,
+    TableCell
+} from '@material-ui/core/'
 
 const Persons = ({ person, deleteNameNumber }) => {
     return (
             <div>
-                {person.name} {person.number}
-                <button onClick={deleteNameNumber}>delete</button>
+                <TableCell>
+                    {person.name} {person.number}
+                </TableCell>
+                <TableCell>
+                    <Button variant="contained" color="primary" onClick={deleteNameNumber}>delete</Button>
+                </TableCell>
             </div>
     )
 }

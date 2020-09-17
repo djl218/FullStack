@@ -6,6 +6,18 @@ import personService from './services/persons'
 import SuccessfulNotification from './components/SuccessfulNotification'
 import UnsuccessfulNotification from './components/UnsuccessfulNotification'
 
+import {
+  Container,
+  Typography,
+  Box,
+  AppBar,
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  Paper
+} from '@material-ui/core'
+
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
@@ -114,22 +126,38 @@ const App = () => {
     
   return (
     <div>
-      <h1>Phonebook</h1>
-      <SuccessfulNotification message={greenMessage} />
-      <UnsuccessfulNotification message={redMessage} />
-      <Filter newSearch={newSearch} handleNewSearch={handleNewSearch} />
-      <h2>add a new</h2>  
-      <PersonForm addNameNumber={addNameNumber} newName={newName} handleNewName={handleNewName}
-        newNumber={newNumber} handleNewNumber={handleNewNumber} 
-      />
-      <h2>Numbers</h2>
-      {personSearch.map((person) =>
-        <Persons 
-          key={person.id}
-          person={person}
-          deleteNameNumber={() => deleteNameNumberOf(person.id)} 
-        />
-      )}  
+      <Container>
+        <Typography>
+          <Box border={1} borderColor="primary.main">
+            <AppBar position="static">
+              <h1>Phonebook</h1>
+            </AppBar>
+            <SuccessfulNotification message={greenMessage} />
+            <UnsuccessfulNotification message={redMessage} />
+            <Filter newSearch={newSearch} handleNewSearch={handleNewSearch} />
+            <h2>Add New</h2>  
+            <PersonForm addNameNumber={addNameNumber} newName={newName} handleNewName={handleNewName}
+              newNumber={newNumber} handleNewNumber={handleNewNumber} 
+            />
+            <h2>Contacts</h2>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableBody>
+                  {personSearch.map((person) =>
+                    <TableRow key={person.id}>
+                    <Persons 
+                      key={person.id}
+                      person={person}
+                      deleteNameNumber={() => deleteNameNumberOf(person.id)} 
+                    />
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </Typography>
+      </Container>  
     </div>
   )
 }
