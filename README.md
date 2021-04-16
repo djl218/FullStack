@@ -3,10 +3,10 @@
 <h2>This repository takes a deep dive into everything related to the MERN stack.<h2>
 
 <h2>Why choose MERN?</h2>
-<h2>Here are some reasons:</h2>
-* React's component-based approach facilitates reusable and extensible code to ensure faster and easier app development.
-* MERN supports the Model View Controller architecture which allows a smooth and seamless development process.
-* MERN is supported by a robust and active community that is completely open-source.
+<h2>Here are some reasons:</h2>\
+* React's component-based approach facilitates reusable and extensible code to ensure faster and easier app development.\
+* MERN supports the Model View Controller architecture which allows a smooth and seamless development process.\
+* MERN is supported by a robust and active community that is completely open-source.\
 
 
 <h2>Here are some topics that this repo explores:</h2>
@@ -32,4 +32,4 @@
 * React navigation management with React Router
 * Bundling React application code with Webpack
 
-[<h3>More info on Full Stack Open</h3>](https://fullstackopen.com/en/)
+[<h3>More info about Full Stack Open</h3>](https://fullstackopen.com/en/)
