@@ -2,7 +2,7 @@
 
 This is the frontend code for the Phonebook app. This app allows users to manage their contacts.
 
-My first full stack application. Frontend was created with React and uses Axios to communicate with the backend. The frontend state is managed with State Hooks. The styling was done with Material-UI.
+Frontend was created with React and uses Axios to communicate with the backend. The frontend state is managed with State Hooks. The styling was done with Material-UI.
 
 The backend data is stored in a Collection in MongoDB and then Node.js uses Mongoose to model that data.
 
