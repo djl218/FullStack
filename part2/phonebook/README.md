@@ -10,5 +10,5 @@ Some notable features of this application are:
   *  Utilization of HTTP Request Methods
   *  Ability for user to add and delete people
   *  Search box that allows user to find a specific person
-  *  
+     
 [Backend code](https://github.com/djl218/Phonebook-Backend)
