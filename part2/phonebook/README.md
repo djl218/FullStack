@@ -13,4 +13,4 @@ Some notable features of this application are:
 
 [<h3>See the app</h3>](https://alluring-kings-canyon-01879.herokuapp.com/)
 
-[<h3>Backend code</h3>](https://github.com/djl218/Phonebook-Backend)
+[Backend code](https://github.com/djl218/Phonebook-Backend)
